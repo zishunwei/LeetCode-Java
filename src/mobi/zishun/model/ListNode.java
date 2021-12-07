@@ -1,6 +1,7 @@
 package mobi.zishun.model;
 
 public class ListNode {
+    public int key;
     public int val;
     public ListNode next;
 
@@ -11,14 +12,25 @@ public class ListNode {
         this.val = val;
     }
 
+    public ListNode(int key, int val) {
+        this.key = key;
+        this.val = val;
+    }
+
     public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+
+    public ListNode(int key, int val, ListNode next) {
+        this.key = key;
         this.val = val;
         this.next = next;
     }
 
     // 逆序打印单向链表
     private static void printListNode(ListNode head) {
-        if (head == null){
+        if (head == null) {
             return;
         }
         printListNode(head.next);
