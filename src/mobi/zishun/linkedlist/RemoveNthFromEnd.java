@@ -1,10 +1,9 @@
-package mobi.zishun.linkedList;
+package mobi.zishun.linkedlist;
 
 import mobi.zishun.model.ListNode;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
 /*
 删除链表的倒数第 N 个结点

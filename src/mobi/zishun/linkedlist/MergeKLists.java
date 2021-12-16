@@ -1,4 +1,4 @@
-package mobi.zishun.linkedList;
+package mobi.zishun.linkedlist;
 
 import mobi.zishun.model.ListNode;
 

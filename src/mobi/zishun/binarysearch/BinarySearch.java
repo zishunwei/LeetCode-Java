@@ -1,4 +1,4 @@
-package mobi.zishun.binarySearch;
+package mobi.zishun.binarysearch;
 
 public class BinarySearch {
     public static int binarySearch(int[] nums, int value) {

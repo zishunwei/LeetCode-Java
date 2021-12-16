@@ -1,4 +1,4 @@
-package mobi.zishun.binarySearch;
+package mobi.zishun.binarysearch;
 
 /*
 33. 搜索旋转排序数组

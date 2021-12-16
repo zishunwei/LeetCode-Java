@@ -1,4 +1,4 @@
-package mobi.zishun.binarySearch;
+package mobi.zishun.binarysearch;
 
 /*
 69. Sqrt(x)

@@ -1,4 +1,4 @@
-package mobi.zishun.binarySearch;
+package mobi.zishun.binarysearch;
 
 public class AdvancedBinarySearch {
     // 变体一：查找第一个值等于给定值的元素
