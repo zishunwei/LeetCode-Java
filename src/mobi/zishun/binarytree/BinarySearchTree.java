@@ -158,7 +158,7 @@ public class BinarySearchTree {
         binarySearchTree.delete(17);
 
         TraversalByRecursion traversalByRecursion = new TraversalByRecursion();
-        List<Integer> inOrderList = traversalByRecursion.inorderTraversal(binarySearchTree.tree);
-        System.out.println(inOrderList);
+        traversalByRecursion.inorderTraversal(binarySearchTree.tree);
+        System.out.println(traversalByRecursion.getInorderTraversalResult());
     }
 }

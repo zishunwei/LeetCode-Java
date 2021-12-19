@@ -12,7 +12,6 @@ public class TraversalByRecursion {
         preorderTraversalRecursion(root, resList);
         return resList;
     }
-
     private void preorderTraversalRecursion(TreeNode root, List<Integer> resList) {
         if (root == null) {
             return;
@@ -23,19 +22,17 @@ public class TraversalByRecursion {
     }
 
 
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> resList = new ArrayList<>();
-        inorderTraversalRecursion(root, resList);
-        return resList;
+    private final List<Integer> inorderTraversalResult = new ArrayList<>();
+    public List<Integer> getInorderTraversalResult(){
+        return inorderTraversalResult;
     }
-
-    private static void inorderTraversalRecursion(TreeNode root, List<Integer> resList) {
+    public void inorderTraversal(TreeNode root) {
         if (root == null) {
             return;
         }
-        inorderTraversalRecursion(root.left, resList);
-        resList.add(root.val);
-        inorderTraversalRecursion(root.right, resList);
+        inorderTraversal(root.left);
+        inorderTraversalResult.add(root.val);
+        inorderTraversal(root.right);
     }
 
 
@@ -44,7 +41,6 @@ public class TraversalByRecursion {
         postorderTraversalRecursion(root, resList);
         return resList;
     }
-
     private void postorderTraversalRecursion(TreeNode root, List<Integer> resList) {
         if (root == null) {
             return;
@@ -62,7 +58,8 @@ public class TraversalByRecursion {
 
         TraversalByRecursion traversalByRecursion = new TraversalByRecursion();
         System.out.println(traversalByRecursion.preorderTraversal(root));
-        System.out.println(traversalByRecursion.inorderTraversal(root));
+        traversalByRecursion.inorderTraversal(root);
+        System.out.println(traversalByRecursion.getInorderTraversalResult());
         System.out.println(traversalByRecursion.postorderTraversal(root));
     }
 
