@@ -7,13 +7,13 @@ import java.util.List;
 
 public class TraversalByRecursion {
 
-    public static List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> resList = new ArrayList<>();
         preorderTraversalRecursion(root, resList);
         return resList;
     }
 
-    private static void preorderTraversalRecursion(TreeNode root, List<Integer> resList) {
+    private void preorderTraversalRecursion(TreeNode root, List<Integer> resList) {
         if (root == null) {
             return;
         }
@@ -22,7 +22,7 @@ public class TraversalByRecursion {
         preorderTraversalRecursion(root.right, resList);
     }
 
-    public static List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> resList = new ArrayList<>();
         inorderTraversalRecursion(root, resList);
         return resList;
@@ -38,13 +38,13 @@ public class TraversalByRecursion {
     }
 
 
-    public static List<Integer> postorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> resList = new ArrayList<>();
         postorderTraversalRecursion(root, resList);
         return resList;
     }
 
-    private static void postorderTraversalRecursion(TreeNode root, List<Integer> resList) {
+    private void postorderTraversalRecursion(TreeNode root, List<Integer> resList) {
         if (root == null) {
             return;
         }
@@ -59,9 +59,10 @@ public class TraversalByRecursion {
         TreeNode right = new TreeNode(5, new TreeNode(6), new TreeNode(7));
         TreeNode root = new TreeNode(1, left, right);
 
-        System.out.println(preorderTraversal(root));
-        System.out.println(inorderTraversal(root));
-        System.out.println(postorderTraversal(root));
+        TraversalByRecursion traversalByRecursion = new TraversalByRecursion();
+        System.out.println(traversalByRecursion.preorderTraversal(root));
+        System.out.println(traversalByRecursion.inorderTraversal(root));
+        System.out.println(traversalByRecursion.postorderTraversal(root));
     }
 
 }
