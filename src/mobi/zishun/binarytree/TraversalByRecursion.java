@@ -22,6 +22,7 @@ public class TraversalByRecursion {
         preorderTraversalRecursion(root.right, resList);
     }
 
+
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> resList = new ArrayList<>();
         inorderTraversalRecursion(root, resList);
