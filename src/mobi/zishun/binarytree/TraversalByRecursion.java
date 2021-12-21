@@ -52,7 +52,7 @@ public class TraversalByRecursion {
 
 
     public static void main(String[] args) {
-        TreeNode left = new TreeNode(2, new TreeNode(3), new TreeNode(4));
+        TreeNode left = new TreeNode(2, new TreeNode(3), new TreeNode(4, new TreeNode(99), new TreeNode(100)));
         TreeNode right = new TreeNode(5, new TreeNode(6), new TreeNode(7));
         TreeNode root = new TreeNode(1, left, right);
 

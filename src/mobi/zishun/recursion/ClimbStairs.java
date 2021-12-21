@@ -25,4 +25,34 @@ public class ClimbStairs {
         hashMap.put(n, res);
         return res;
     }
+
+    public int climbStairsSimply(int n) {
+        if (n == 1) {
+            return 1;
+        } else if (n == 2) {
+            return 2;
+        }
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }
+
+
+    public int climbStairsByLoop(int n) {
+        if (n == 1) {
+            return 1;
+        } else if (n == 2) {
+            return 2;
+        }
+
+        // 爬楼梯问题 == 斐波拉契数列
+        // 例子：到第4级走法 = 到第3级走法（加一步） + 到第2级走法（加两步）
+        int ret = 0;
+        int pre = 2;
+        int prepre = 1;
+        for (int i = 3; i <= n; ++i) {
+            ret = pre + prepre;
+            prepre = pre;
+            pre = ret;
+        }
+        return ret;
+    }
 }
