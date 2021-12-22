@@ -73,12 +73,36 @@ public class TraversalByStack {
         return res;
     }
 
-    // 后续遍历
+    // 后续遍历（优雅版）- 前序遍历（中右左遍历）的翻转
+    // https://leetcode-cn.com/problems/binary-tree-postorder-traversal/solution/er-cha-shu-de-hou-xu-bian-li-by-leetcode-solution/610664
     public List<Integer> postorderTraversal(TreeNode root) {
+        Deque<TreeNode> stack = new LinkedList<>();
+        // 使用LinkedList + addFirst，直接输出倒序列表
+        LinkedList<Integer> res = new LinkedList<>();
+//        List<Integer> res = new LinkedList<>();
+        if (null == root) return res;
+        stack.addFirst(root);
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.removeFirst();
+            res.addFirst(cur.val);
+            // 与前序遍历相反顺序入栈（先入左后入右 -> 先出右后出左）
+            if (null != cur.left) {
+                stack.addFirst(cur.left);
+            }
+            if (null != cur.right) {
+                stack.addFirst(cur.right);
+            }
+        }
+//        Collections.reverse(res);
+        return res;
+    }
+
+    // 后续遍历
+    public List<Integer> postorderTraversalV2(TreeNode root) {
         if (root == null) {
             return null;
         }
-        Deque<TreeNode> stack = new ArrayDeque<>();
+        Deque<TreeNode> stack = new LinkedList<>();
         stack.addFirst(root);
         List<Integer> res = new ArrayList<>();
 
@@ -117,6 +141,7 @@ public class TraversalByStack {
 
         TraversalByStack traversalByStack = new TraversalByStack();
         System.out.println(traversalByStack.postorderTraversal(root));
+        System.out.println(traversalByStack.postorderTraversalV2(root));
     }
 
 }
