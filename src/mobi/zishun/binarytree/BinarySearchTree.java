@@ -2,8 +2,6 @@ package mobi.zishun.binarytree;
 
 import mobi.zishun.model.TreeNode;
 
-import java.util.List;
-
 public class BinarySearchTree {
     private TreeNode tree;
 
@@ -158,7 +156,6 @@ public class BinarySearchTree {
         binarySearchTree.delete(17);
 
         TraversalByRecursion traversalByRecursion = new TraversalByRecursion();
-        traversalByRecursion.inorderTraversal(binarySearchTree.tree);
-        System.out.println(traversalByRecursion.getInorderTraversalResult());
+        System.out.println(traversalByRecursion.inorderTraversal(binarySearchTree.tree));
     }
 }
