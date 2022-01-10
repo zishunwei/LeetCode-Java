@@ -16,13 +16,10 @@ public class MaxDepthOfTree {
     public static int maxDepth(TreeNode root) {
         if (root == null) {
             return 0;
-        } else if (root.left == null && root.right == null) {
-            return 1;
         }
         int leftMaxDepth = maxDepth(root.left);
         int rightMaxDepth = maxDepth(root.right);
-
-        return leftMaxDepth >= rightMaxDepth ? 1 + leftMaxDepth : 1 + rightMaxDepth;
+        return 1 + Math.max(leftMaxDepth, rightMaxDepth);
     }
 
     // bfs
