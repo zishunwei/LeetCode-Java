@@ -95,7 +95,7 @@ public class FlattenBinaryTree {
         TreeNode root = new TreeNode(1, left, right);
 
         FlattenBinaryTree method = new FlattenBinaryTree();
-        method.flatten(root);
+        method.flattenV2(root);
 
         while (root != null) {
             System.out.println(root.val);
