@@ -35,8 +35,36 @@ public class FlattenBinaryTree {
         }
     }
 
-    // 需额外空间
+    // 需额外空间（穿针引线）
     public void flattenV2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        TreeNode prev = null;
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.addFirst(root);
+        while (!stack.isEmpty()) {
+            TreeNode curNode = stack.removeFirst();
+            // 第一次循环（根节点为当前节点）
+            if (prev != null) {
+                prev.left = null;
+                prev.right = curNode;
+            }
+            TreeNode right = curNode.right;
+            TreeNode left = curNode.left;
+            if (curNode.right != null) {
+                stack.addFirst(right);
+            }
+            if (curNode.left != null) {
+                stack.addFirst(left);
+            }
+            prev = curNode;
+        }
+    }
+
+    // 需额外空间(逻辑简单)
+    public void flattenV3(TreeNode root) {
         if (root == null) {
             return;
         }
