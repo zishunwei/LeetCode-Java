@@ -135,13 +135,14 @@ public class TraversalByStack {
     }
 
     public static void main(String[] args) {
-        TreeNode left = new TreeNode(2, new TreeNode(3), new TreeNode(4, new TreeNode(99), new TreeNode(100)));
+        TreeNode left = new TreeNode(2, new TreeNode(3), new TreeNode(4));
         TreeNode right = new TreeNode(5, new TreeNode(6), new TreeNode(7));
         TreeNode root = new TreeNode(1, left, right);
 
         TraversalByStack traversalByStack = new TraversalByStack();
-        System.out.println(traversalByStack.postorderTraversal(root));
-        System.out.println(traversalByStack.postorderTraversalV2(root));
+        System.out.println(traversalByStack.inorderTraversal(root));
+//        System.out.println(traversalByStack.postorderTraversal(root));
+//        System.out.println(traversalByStack.postorderTraversalV2(root));
     }
 
 }

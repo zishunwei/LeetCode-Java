@@ -45,7 +45,7 @@ public class LevelOrderTraversal {
         if (root == null) {
             return new ArrayList<>(0);
         }
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<List<Integer>> res = new ArrayList<>();
         // index为层数记录
         recursion(1, root, res);
         return res;
@@ -70,9 +70,9 @@ public class LevelOrderTraversal {
 
     public static void main(String[] args) {
         TreeNode left = new TreeNode(2, new TreeNode(3), new TreeNode(4));
-        TreeNode right = new TreeNode(5, null, new TreeNode(7));
+        TreeNode right = new TreeNode(5, null, new TreeNode(7, null, new TreeNode(8)));
         TreeNode root = new TreeNode(1, left, right);
 
-        System.out.println(levelOrderByDfs(root));
+        System.out.println(levelOrder(root));
     }
 }
