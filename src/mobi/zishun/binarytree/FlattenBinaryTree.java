@@ -18,20 +18,22 @@ public class FlattenBinaryTree {
         if (root == null) {
             return;
         }
-        TreeNode curr = root;
-        while (curr != null) {
-            if (curr.left != null) {
-                TreeNode next = curr.left;
+        TreeNode curNode = root;
+        while (curNode != null) {
+            TreeNode next = curNode.left;
+            // 无左子树-即直接遍历右子树
+            if (next != null) {
                 TreeNode preNode = next;
                 while (preNode.right != null) {
                     preNode = preNode.right;
                 }
-                preNode.right = curr.right;
+                // 将右子数移动到preNode右下
+                preNode.right = curNode.right;
                 // 移动curr左子树为右子树
-                curr.left = null;
-                curr.right = next;
+                curNode.left = null;
+                curNode.right = next;
             }
-            curr = curr.right;
+            curNode = curNode.right;
         }
     }
 
@@ -51,13 +53,12 @@ public class FlattenBinaryTree {
                 prev.left = null;
                 prev.right = curNode;
             }
-            TreeNode right = curNode.right;
-            TreeNode left = curNode.left;
+            // 在遍历左子树之前就获得左右子节点的信息，并存入栈内，子节点的信息就不会丢失
             if (curNode.right != null) {
-                stack.addFirst(right);
+                stack.addFirst(curNode.right);
             }
             if (curNode.left != null) {
-                stack.addFirst(left);
+                stack.addFirst(curNode.left);
             }
             prev = curNode;
         }
