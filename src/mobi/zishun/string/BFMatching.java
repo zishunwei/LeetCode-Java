@@ -3,7 +3,7 @@ package mobi.zishun.string;
 /*
  * BF算法（暴风(Brute Force)算法）
  */
-public class BruteForceMatching {
+public class BFMatching {
     public int bf(String str, String target) {
         if (target.length() > str.length()) {
             return -1;
@@ -30,7 +30,7 @@ public class BruteForceMatching {
     }
 
     public static void main(String[] args) {
-        BruteForceMatching method = new BruteForceMatching();
+        BFMatching method = new BFMatching();
         System.out.println(method.bf("abcdefg", "def"));
     }
 }
