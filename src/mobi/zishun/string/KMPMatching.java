@@ -69,7 +69,7 @@ public class KMPMatching {
 
     public static void main(String[] args) {
         KMPMatching method = new KMPMatching();
-        System.out.println(method.kmp("cabcabcabdbdbabcabcabdbdabcabcabdbddbbdcabdbabdbababacdabdcd", "ababacd"));
+        System.out.println(method.kmp("ababaeabacababacd", "ababacd"));
     }
 
 }
