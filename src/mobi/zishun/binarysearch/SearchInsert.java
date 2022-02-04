@@ -22,7 +22,7 @@ public class SearchInsert {
         return low;
     }
 
-    // 初版
+    // 初版 - 代码更冗余 - 但部分情况可以提前终止循环
     public int searchInsertV2(int[] nums, int target) {
         int low = 0;
         int high = nums.length - 1;
