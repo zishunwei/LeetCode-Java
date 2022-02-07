@@ -23,24 +23,25 @@ public class LongestDiverseString {
         StringBuilder res = new StringBuilder();
 
         while (true) {
-            Arrays.sort(arr, (p1, p2) -> (p2.freq - p1.freq));
+            Arrays.sort(arr, (p1, p2) -> (p2.count - p1.count));
             // flag-判断是否添加完（所有pair.freq为0 or 只剩一种字母并且连续添加两次）
             boolean hasNext = false;
             for (Pair pair : arr) {
-                if (pair.freq < 1) {
+                if (pair.count < 1) {
                     break;
                 }
-                int m = res.length();
+                int n = res.length();
                 // 同一字母连续添加两次
-                if (m >= 2 && res.charAt(m - 2) == pair.ch && res.charAt(m - 1) == pair.ch) {
+                if (n >= 2 && res.charAt(n - 2) == pair.ch && res.charAt(n - 1) == pair.ch) {
                     continue;
                 }
                 hasNext = true;
                 res.append(pair.ch);
-                pair.freq--;
+                pair.count--;
+                // 一次for循环找一个值
                 break;
             }
-            if (!hasNext){
+            if (!hasNext) {
                 break;
             }
         }
@@ -48,18 +49,18 @@ public class LongestDiverseString {
     }
 
     private static class Pair {
-        public int freq;
-        public char ch;
+        int count;
+        char ch;
 
-        public Pair(int freq, char ch) {
-            this.freq = freq;
+        public Pair(int count, char ch) {
+            this.count = count;
             this.ch = ch;
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         LongestDiverseString method = new LongestDiverseString();
-        System.out.println(method.longestDiverseString(7,1,0));
+        System.out.println(method.longestDiverseString(7, 1, 0));
     }
 
 }
