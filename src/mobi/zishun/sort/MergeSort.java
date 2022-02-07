@@ -22,6 +22,7 @@ public class MergeSort {
     }
 
     // 合并两个排好序的数组
+    // nums为原完整数组；在原数组相同位置合并nums(p...q)和nums(q+1...r)
     private static void merge(int[] nums, int p, int q, int r) {
         int i = p;
         int j = q + 1;
@@ -47,13 +48,13 @@ public class MergeSort {
             count++;
         }
         // 将tmp中的数组拷贝回a[p...r]
-        for (i = 0; i <= r-p; ++i) {
-            nums[p+i] = temp[i];
+        for (i = 0; i <= r - p; ++i) {
+            nums[p + i] = temp[i];
         }
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{4,5,6, 1, 2, 3};
+        int[] nums = new int[]{4, 5, 6, 1, 2, 3};
         mergeSort(nums, 6);
 //        merge(nums, 0,1,3);
         System.out.println(Arrays.toString(nums));
