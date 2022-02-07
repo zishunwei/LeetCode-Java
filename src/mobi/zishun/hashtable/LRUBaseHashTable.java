@@ -57,7 +57,7 @@ public class LRUBaseHashTable {
             // 先把node的前后指针调整好
             node.next = headNode.next;
             node.prev = headNode;
-            // 再把原第一个指针的前指针和headNode的后指针调整好
+            // 再 把原第一个指针的前指针和headNode的后指针调整好
             headNode.next.prev = node;
             headNode.next = node;
             return node.value;
