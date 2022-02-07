@@ -49,8 +49,8 @@ public class LongestDiverseString {
     }
 
     private static class Pair {
-        int count;
-        char ch;
+        private int count;
+        private final char ch;
 
         public Pair(int count, char ch) {
             this.count = count;
