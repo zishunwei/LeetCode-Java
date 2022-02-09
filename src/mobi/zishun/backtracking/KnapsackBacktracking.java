@@ -2,6 +2,7 @@ package mobi.zishun.backtracking;
 
 /*
  * 0-1背包问题
+ * 求可放进背包的最大重量
  */
 public class KnapsackBacktracking {
 
@@ -43,10 +44,10 @@ public class KnapsackBacktracking {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         KnapsackBacktracking m = new KnapsackBacktracking();
-        int[] items = {2,4,5,6};
-        int res = m.knapSack(items,13);
+        int[] items = {3, 8, 13, 20};
+        int res = m.knapSack(items, 30);
         System.out.println(res);
     }
 

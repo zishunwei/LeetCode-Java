@@ -1,10 +1,10 @@
-package mobi.zishun.recursion;
+package mobi.zishun.backtracking;
 
 /*
  * 0-1背包问题
- * 递归实现
+ * 求可放进背包的物品的最大价值
  */
-public class KnapsackRecursion {
+public class KnapsackBacktrackingII {
     private int[][] cache;
 
     /**
@@ -54,7 +54,7 @@ public class KnapsackRecursion {
     public static void main(String[] args) {
         int[] w = {2, 1, 3, 2};
         int[] v = {12, 10, 20, 15};
-        KnapsackRecursion m = new KnapsackRecursion();
+        KnapsackBacktrackingII m = new KnapsackBacktrackingII();
         int res = m.knapSack(w, v, 5);
         System.out.println(res);
     }
