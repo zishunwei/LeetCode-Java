@@ -23,23 +23,28 @@ public class Permutations {
         if (k == 1) {
             results.add(arrayToList(nums));
         }
-
         // 1234 先把 1 换到最后，递归，相当于把最后一位是1 的处理好了。
         // 然后要把1换回来，又变成1234 ，再把2换到最后一位，再递归，再换回来。以此类推。
         for (int i = 0; i < k; i++) {
-            int temp = nums[i];
-            nums[i] = nums[k-1];
-            nums[k-1] = temp;
-
-            permuteRecursion(nums, n, k-1);
-
-            temp = nums[i];
-            nums[i] = nums[k-1];
-            nums[k-1] = temp;
+            swap(nums, i, k - 1);
+            permuteRecursion(nums, n, k - 1);
+            swap(nums, i, k - 1);
         }
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 
     private List<Integer> arrayToList(int[] nums) {
         return Arrays.stream(nums).boxed().collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) {
+        Permutations m = new Permutations();
+        int[] nums = {1, 2, 3};
+        System.out.println(m.permute(nums));
     }
 }
