@@ -8,6 +8,7 @@ package mobi.zishun.backtracking;
 public class RegularExpressionMatch {
     private boolean matched;
 
+    //text：需要匹配的文本; pattern: 正则表达式模式串
     public boolean regularExpressionMatch(char[] text, char[] pattern) {
         matched = false;
         rMatch(0, 0, text, pattern);
@@ -15,13 +16,17 @@ public class RegularExpressionMatch {
     }
 
     private void rMatch(int i, int j, char[] text, char[] pattern) {
+        // 如果已经匹配了，就不要继续递归了
         if (matched) {
             return;
         }
+        // 正则表达式到结尾了
         if (j == pattern.length) {
+            // 文本串也到结尾了
             if (i == text.length) {
                 matched = true;
             }
+            // 此次匹配失败，return
             return;
         }
         if (pattern[j] == '*') { // *匹配任意个字符
