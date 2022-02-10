@@ -1,7 +1,7 @@
 package mobi.zishun.backtracking;
 
 /*
- * 0-1背包问题
+ * 0-1背包问题（数据算法之美-39-回溯算法）
  * 求可放进背包的最大重量
  */
 public class KnapsackBacktracking {
