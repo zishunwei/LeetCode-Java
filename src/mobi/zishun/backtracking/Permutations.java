@@ -1,4 +1,4 @@
-package mobi.zishun.recursion;
+package mobi.zishun.backtracking;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,7 +9,7 @@ import java.util.List;
  * 递归（回溯）解法（代码简洁）-
  * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
  */
-public class PermutationsRecursion {
+public class Permutations {
     private final List<List<Integer>> results = new LinkedList<>();
 
     public List<List<Integer>> permute(int[] nums) {
@@ -51,7 +51,7 @@ public class PermutationsRecursion {
     }
 
     public static void main(String[] args) {
-        PermutationsRecursion m = new PermutationsRecursion();
+        Permutations m = new Permutations();
         int[] nums = {1, 2, 3};
         System.out.println(m.permute(nums));
     }

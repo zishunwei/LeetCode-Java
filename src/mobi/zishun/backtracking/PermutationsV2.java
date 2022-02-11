@@ -9,7 +9,7 @@ import java.util.List;
  * 回溯思想-基于树形结果dfs
  * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
  */
-public class PermutationsBacktracking {
+public class PermutationsV2 {
     // 使用一个全局变量数组保存所有可能的全排列
     private final List<List<Integer>> res = new LinkedList<>();
 
@@ -48,7 +48,7 @@ public class PermutationsBacktracking {
     }
 
     public static void main(String[] args) {
-        PermutationsBacktracking m = new PermutationsBacktracking();
+        PermutationsV2 m = new PermutationsV2();
         int[] nums = {1, 2, 3};
         List<List<Integer>> res = m.permute(nums);
         System.out.println(res);
