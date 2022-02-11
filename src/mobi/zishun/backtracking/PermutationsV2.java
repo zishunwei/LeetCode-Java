@@ -31,6 +31,7 @@ public class PermutationsV2 {
         if (depth == n) {
             List<Integer> pathCopy = new ArrayList<>(path);
             res.add(pathCopy);
+            return;
         }
         // 在非叶子结点处，产生不同的分支，这一操作的语义是：
         // 在还未选择的数中依次选择一个元素作为下一个位置的元素，这显然得通过一个循环实现。
