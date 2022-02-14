@@ -71,12 +71,12 @@ public class KnapsackDPII {
         int n = weights.length;
         int[] states = new int[capacity + 1];
         Arrays.fill(states, -1);
-
+        // 初始化
         states[0] = 0;
         if (weights[0] <= capacity) {
             states[weights[0]] = values[0];
         }
-
+        // 动态规划
         for (int i = 1; i < n; i++) {
             for (int j = capacity - weights[i]; j >= 0; j--) {
                 if (states[j] != -1) {
@@ -87,7 +87,7 @@ public class KnapsackDPII {
                 }
             }
         }
-
+        // 输出结果
         int res = 0;
         for (int j = 0; j <= capacity; j++) {
             if (states[j] > res) {
