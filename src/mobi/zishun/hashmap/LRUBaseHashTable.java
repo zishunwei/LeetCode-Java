@@ -1,4 +1,4 @@
-package mobi.zishun.hashtable;
+package mobi.zishun.hashmap;
 
 import java.util.HashMap;
 
