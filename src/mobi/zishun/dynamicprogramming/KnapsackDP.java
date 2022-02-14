@@ -70,7 +70,7 @@ public class KnapsackDP {
         }
 
         for (int j = capacity; j >= 0; j--) {
-            if (states[j]){
+            if (states[j]) {
                 return j;
             }
         }
