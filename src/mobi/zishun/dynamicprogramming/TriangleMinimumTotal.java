@@ -21,13 +21,35 @@ import java.util.List;
 public class TriangleMinimumTotal {
     // 动态规划
     public int minimumTotal(List<List<Integer>> triangle) {
-        return 0;
+        int n = triangle.size();
+        Integer[][] states = new Integer[n][n];
+        // 初始化
+        states[0][0] = triangle.get(0).get(0);
+        //动态规划
+        for (int i = 1; i < n; i++) {
+            // 处理最左边元素
+            states[i][0] = triangle.get(i).get(0) + states[i - 1][0];
+            // 处理中间元素
+            for (int j = 1; j < i; j++) {
+                states[i][j] = triangle.get(i).get(j) + Math.min(states[i - 1][j - 1], states[i - 1][j]);
+            }
+            // 处理最右边元素
+            states[i][i] = triangle.get(i).get(i) + states[i - 1][i - 1];
+        }
+        // 输出结果（计算状态数组最后一层的最小值）
+        int res = states[n - 1][0];
+        for (int j = 1; j < n; j++) {
+            if (states[n - 1][j] < res) {
+                res = states[n - 1][j];
+            }
+        }
+        return res;
     }
 
     // 递归 + 缓存方法
     public int minimumTotalV2(List<List<Integer>> triangle) {
         int n = triangle.size();
-        cache = new Integer[n][triangle.get(n - 1).size()];
+        cache = new Integer[n][n];
         return dfs(triangle, n, 0, 0);
     }
 
