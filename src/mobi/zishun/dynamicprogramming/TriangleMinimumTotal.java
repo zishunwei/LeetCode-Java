@@ -25,7 +25,8 @@ public class TriangleMinimumTotal {
         Integer[][] states = new Integer[n][n];
         // 初始化
         states[0][0] = triangle.get(0).get(0);
-        //动态规划
+        // 动态规划
+        // 状态变更方程: states[i][j] = triangle[i][j] + min(states[i - 1][j - 1], states[i - 1][j])
         for (int i = 1; i < n; i++) {
             // 处理最左边元素
             states[i][0] = triangle.get(i).get(0) + states[i - 1][0];
