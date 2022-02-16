@@ -32,10 +32,42 @@ public class MinPathSum {
         return states[m - 1][n - 1];
     }
 
+    // 从后往前递归 + 备忘录 (基于动态规划-状态转移方程递推)
+    // 状态转移方程：states[i][j] = grid[i][j] + min(states[i - 1][j], states[i][j - 1]);
+    public int minPathSumV2(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        memo = new int[m][n];
+        return minDist(grid, m - 1, n - 1);
+    }
+
+    private int[][] memo;
+
+    public int minDist(int[][] grid, int i, int j) { // 调用minDist(n-1, n-1);
+        if (i == 0 && j == 0) {
+            return grid[0][0];
+        }
+        if (memo[i][j] > 0) {
+            return memo[i][j];
+        }
+        int minLeft = Integer.MAX_VALUE;
+        if (j - 1 >= 0) {
+            minLeft = minDist(grid, i, j - 1);
+        }
+        int minUp = Integer.MAX_VALUE;
+        if (i - 1 >= 0) {
+            minUp = minDist(grid, i - 1, j);
+        }
+        // 状态转移方程
+        int currMinDist = grid[i][j] + Math.min(minLeft, minUp);
+        memo[i][j] = currMinDist;
+        return currMinDist;
+    }
+
     public static void main(String[] args) {
         MinPathSum m = new MinPathSum();
         int[][] grid = {{1, 2, 3}, {4, 5, 6}};
-        System.out.println(m.minPathSum(grid));
+        System.out.println(m.minPathSumV2(grid));
     }
 
 
