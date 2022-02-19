@@ -57,11 +57,9 @@ public class PancakeSort {
     }
 
     private int findMax(int[] arr, int end) {
-        int max = arr[0];
         int maxIndex = 0;
         for (int i = 1; i < end; i++) {
-            if (arr[i] >= max) {
-                max = arr[i];
+            if (arr[i] >= arr[maxIndex]) {
                 maxIndex = i;
             }
         }
