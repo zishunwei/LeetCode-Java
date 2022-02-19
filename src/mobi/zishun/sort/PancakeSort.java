@@ -36,7 +36,7 @@ public class PancakeSort {
         if (end == 1) {
             return;
         }
-        // 找到0到end的最大值索引+1
+        // 找到0到end的最大值位置（索引+1）
         int max = findMax(arr, end);
         // 按max位置翻转arr[0...max]
         result.add(max);
