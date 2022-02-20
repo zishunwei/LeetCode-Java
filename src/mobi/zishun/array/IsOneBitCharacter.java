@@ -12,7 +12,6 @@ package mobi.zishun.array;
 解释: 唯一的编码方式是一个两比特字符和一个一比特字符。
 所以最后一个字符是一比特字符。
 链接：https://leetcode-cn.com/problems/1-bit-and-2-bit-characters
-。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class IsOneBitCharacter {
     public boolean isOneBitCharacter(int[] bits) {
