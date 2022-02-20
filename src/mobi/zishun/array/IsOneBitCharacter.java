@@ -17,6 +17,7 @@ public class IsOneBitCharacter {
     public boolean isOneBitCharacter(int[] bits) {
         int n = bits.length;
         int i = 0;
+        // 遇见1走两步，遇到0走一步
         while (i < n - 1) {
             if (bits[i] == 1) {
                 i += 2;
@@ -24,6 +25,7 @@ public class IsOneBitCharacter {
                 i++;
             }
         }
+        // 能走到最后一位说明最后为一比特字符，返回true
         return i == n - 1;
     }
 
