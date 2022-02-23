@@ -6,6 +6,8 @@ public class NumberSystemTest {
         int z = 'z';
         System.out.println(a);
         System.out.println(z);
+        System.out.println((int) 'A');
+        System.out.println((int) 'Z');
         System.out.println(z - a);
     }
 
