@@ -1,32 +1,32 @@
 package mobi.zishun.stack;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 
 public class IsValidBrackets {
     public boolean isValid(String s) {
-        if (s.length() % 2 != 0) {
+        int n = s.length();
+        if (n % 2 != 0) {
             return false;
         }
-        Deque<Character> stack = new LinkedList<>();
-        HashMap<Character, Character> pairs = new LinkedHashMap<Character, Character>() {{
+        char[] charArr = s.toCharArray();
+        HashMap<Character, Character> pairs = new HashMap<>() {{
             put('(', ')');
             put('[', ']');
             put('{', '}');
         }};
-        for (int i = 0; i < s.length(); i++) {
-            char character = s.charAt(i);
-            if (pairs.containsKey(character)){
-                stack.push(character);
+        Deque<Character> stack = new ArrayDeque<>(n / 2);
+        for (char cur : charArr) {
+            if (pairs.containsKey(cur)) {
+                stack.addLast(cur);
             } else {
-                if (stack.isEmpty() || !pairs.get(stack.pop()).equals(character)){
+                if (stack.isEmpty() || pairs.get(stack.peekLast()) != cur) {
                     return false;
                 }
+                stack.removeLast();
             }
         }
         return stack.isEmpty();
     }
-
 }
