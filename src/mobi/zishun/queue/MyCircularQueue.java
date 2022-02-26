@@ -3,16 +3,16 @@ package mobi.zishun.queue;
 /*
 622. 设计循环队列
  */
-public class CircularQueue {
+public class MyCircularQueue {
     // 数组：items，数组大小：n
-    private int[] items;
-    private int capacity;
+    private final int[] items;
+    private final int capacity;
     // head表示队头下标
     private int head;
     private int count;
 
     // 申请一个大小为capacity的数组
-    public CircularQueue(int n) {
+    public MyCircularQueue(int n) {
         // 这里的capacity加1的原因是，在循环队列中， 我们会浪费一个空间，这样能存元素的数量会少一个，
         // 所以这里我们基于传进来的容量+1，这样就可以储存期望的元素数量
         items = new int[n];
@@ -65,20 +65,20 @@ public class CircularQueue {
     }
 
     public static void main(String[] args) {
-        CircularQueue circularQueue = new CircularQueue(3);
-        System.out.println(circularQueue.enQueue(1));
-        System.out.println(circularQueue.enQueue(2));
-        System.out.println(circularQueue.enQueue(3));
-        System.out.println(circularQueue.enQueue(4));
+        MyCircularQueue myCircularQueue = new MyCircularQueue(3);
+        System.out.println(myCircularQueue.enQueue(1));
+        System.out.println(myCircularQueue.enQueue(2));
+        System.out.println(myCircularQueue.enQueue(3));
+        System.out.println(myCircularQueue.enQueue(4));
 
-        System.out.println(circularQueue.Rear());
-        System.out.println(circularQueue.isFull());
+        System.out.println(myCircularQueue.Rear());
+        System.out.println(myCircularQueue.isFull());
 
-        System.out.println(circularQueue.deQueue());
-        System.out.println(circularQueue.enQueue(4));
+        System.out.println(myCircularQueue.deQueue());
+        System.out.println(myCircularQueue.enQueue(4));
 
-        System.out.println(circularQueue.Rear());
-//        System.out.println(circularQueue.Front());
+        System.out.println(myCircularQueue.Rear());
+//        System.out.println(myCircularQueue.Front());
 
     }
 
