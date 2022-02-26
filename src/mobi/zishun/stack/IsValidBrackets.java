@@ -11,7 +11,7 @@ public class IsValidBrackets {
             return false;
         }
         char[] charArr = s.toCharArray();
-        HashMap<Character, Character> pairs = new HashMap<>() {{
+        HashMap<Character, Character> pairs = new HashMap<Character, Character>() {{
             put('(', ')');
             put('[', ']');
             put('{', '}');
