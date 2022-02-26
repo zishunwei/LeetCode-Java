@@ -32,7 +32,7 @@ public class CanCompleteCircuit {
         for (int i = 0; i < n; i++) {
             totalSum += (gas[i] - cost[i]);
             curSum += gas[i] - cost[i];
-            // 假设一定有解（有无解靠totalSum决定），不考虑当前站点的消耗，直接从下一个索引开始
+            // 假设一定有解（有无解靠totalSum决定），不考虑当前站点的消耗，直接从下一个索引开始（只考虑start...n-1的站点了）
             if (curSum < 0) {
                 start = i + 1;
                 curSum = 0;
