@@ -9,31 +9,36 @@ package mobi.zishun.binarysearch;
 链接：https://leetcode-cn.com/problems/sqrtx
  */
 public class Sqrt {
-    public static int mySqrt(int x) {
+    public int mySqrt(int x) {
         if (x == 0) {
             return 0;
-        } else if (x == 1 || x == 2) {
-            return 1;
         }
-
-        long low = 1;
-        long high = x;
-        while (low <= high) {
-            long mid = low + (high - low) / 2;
-            if (mid * mid <= x && (mid + 1) * (mid + 1) > x) {
-                return (int) mid;
-            } else if (mid * mid > x) {
-                high = mid - 1;
-            } else if ((mid + 1) * (mid + 1) < x) {
-                low = mid + 1;
-            } else if ((mid + 1) * (mid + 1) == x) {
-                return (int) mid + 1;
+        long left = 1;
+        long right = x;
+        while (left <= right) {
+            long medium = (right - left) / 2 + left;
+            if (medium * medium > x) {
+                right = medium - 1;
+            } else if (medium * medium == x) {
+                return (int) medium;
+            } else {
+//            else if (medium * medium < x) {
+                if ((medium + 1) * (medium + 1) > x) {
+                    return (int) medium;
+                } else
+                if ((medium + 1) * (medium + 1) == x) {
+                    return (int) medium + 1;
+//              else if ((medium + 1) * (medium + 1) < x) {
+                } else {
+                    left = medium + 1;
+                }
             }
         }
         return -1;
     }
 
     public static void main(String[] args) {
-        System.out.println(mySqrt(2147395599));
+        Sqrt m = new Sqrt();
+        System.out.println(m.mySqrt(2147395599));
     }
 }
