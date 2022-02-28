@@ -19,7 +19,7 @@ public class MyCircularDeque {
     private final int[] nums;
     // 指向头部元素索引
     private int head;
-    // 指向尾部下一个插入的位置
+    // 指向尾部下一个插入的位置 (方便首个元素插入)
     private int tail;
     private int count;
     private final int capacity;
