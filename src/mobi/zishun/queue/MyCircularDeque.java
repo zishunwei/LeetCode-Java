@@ -37,6 +37,7 @@ public class MyCircularDeque {
             return false;
         }
         head = (head + capacity - 1) % capacity;
+//        head = (head - 1) & (capacity - 1);
         nums[head] = value;
         count++;
         return true;
@@ -91,6 +92,17 @@ public class MyCircularDeque {
     public boolean isFull() {
         return count == capacity;
 //        return (tail + 1) % capacity == head;
+    }
+
+    public static void main(String[] args) {
+        int head = 0;
+        int capacity = 3;
+        System.out.println((head + capacity - 1) % capacity);
+        System.out.println((head - 1) & (capacity - 1));
+
+        int tail = 0;
+        System.out.println((tail + 1) % capacity);
+        System.out.println((tail + 1) & (capacity - 1));
     }
 
 }
