@@ -90,6 +90,7 @@ public class MyCircularDeque {
 
     public boolean isFull() {
         return count == capacity;
+//        return (tail + 1) % capacity == head;
     }
 
 }
