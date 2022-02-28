@@ -36,23 +36,22 @@ public class ClimbStairs {
     }
 
 
-    public int climbStairsByLoop(int n) {
-        if (n == 1) {
-            return 1;
-        } else if (n == 2) {
-            return 2;
-        }
-
+    public int climbStairsByDP(int n) {
         // 爬楼梯问题 == 斐波拉契数列
         // 例子：到第4级走法 = 到第3级走法（加一步） + 到第2级走法（加两步）
-        int ret = 0;
-        int pre = 2;
-        int prepre = 1;
-        for (int i = 3; i <= n; ++i) {
-            ret = pre + prepre;
+        int res = 1;
+        int pre = 1;
+        int prepre = 0;
+        for (int i = 1; i <= n; i++) {
+            res = pre + prepre;
             prepre = pre;
-            pre = ret;
+            pre = res;
         }
-        return ret;
+        return res;
+    }
+
+    public static void main(String[] args){
+        ClimbStairs m = new ClimbStairs();
+        System.out.println(m.climbStairsByDP(3));
     }
 }
