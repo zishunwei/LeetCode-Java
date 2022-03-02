@@ -5,7 +5,7 @@ package mobi.zishun.backtracking;
  * '*'：匹配任意多个（大于等于 0 个）任意字符
  * '?'：匹配零个或者一个任意字符。
  */
-public class RegularExpressionMatch {
+public class RegularExpressionMatchingII {
     private boolean matched;
 
     //text：需要匹配的文本; pattern: 正则表达式模式串
@@ -44,7 +44,7 @@ public class RegularExpressionMatch {
     }
 
     public static void main(String[] args) {
-        RegularExpressionMatch m = new RegularExpressionMatch();
+        RegularExpressionMatchingII m = new RegularExpressionMatchingII();
         char[] pattern = {'a', '*', 'b', '?', 'c'};
         char[] text1 = {'a', 'a', 'a', 'b', 'b', 'c', 'c'};
         char[] text2 = {'a', 'b', 'c', 'd'};

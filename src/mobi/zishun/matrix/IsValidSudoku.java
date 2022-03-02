@@ -1,4 +1,4 @@
-package mobi.zishun.backtracking;
+package mobi.zishun.matrix;
 
 /*
  * 36. 有效的数独
