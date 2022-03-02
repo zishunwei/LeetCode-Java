@@ -11,7 +11,7 @@ package mobi.zishun.dynamicprogramming;
 链接：https://leetcode-cn.com/problems/maximum-product-subarray
  */
 public class MaximumProductSubarray {
-    // 这里的定义并不满足「最优子结构」
+    // 不满足一般DP的要求，这里的定义并不满足「最优子结构」
     // 有负数，会导致随时最大值和最小值互转，需要同时记录前i的最小值和最大值
     // dp[i] = max(nums[i] * pre_max, nums[i] * pre_min, nums[i]),
     // 这里0 不需要单独考虑, 因为当相乘不管最大值和最小值,都会置0
@@ -22,6 +22,8 @@ public class MaximumProductSubarray {
         }
         int preMax = nums[0];
         int preMin = nums[0];
+        // dp[i] = max(nums[i] * pre_max, nums[i] * pre_min, nums[i])
+        // 滚动数组降低空间复杂度到O(1)
         int res = preMax;
         for (int i = 1; i < n; i++) {
             // 避免在求preMin的时候preMax已经更新了
