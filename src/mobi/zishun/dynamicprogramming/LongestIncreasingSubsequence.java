@@ -30,7 +30,7 @@ public class LongestIncreasingSubsequence {
                 }
             }
             // 简化输出流程，在dp过程中找到dp数组的最大值
-            res  = Math.max(res, dp[i]);
+            res = Math.max(res, dp[i]);
         }
         return res;
     }
