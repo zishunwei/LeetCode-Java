@@ -1,5 +1,8 @@
 package mobi.zishun.array;
 
+/*
+ * 1725. 可以形成最大正方形的矩形数目
+ */
 public class CountGoodRectangles {
     public int countGoodRectangles(int[][] rectangles) {
         int res = 0;
