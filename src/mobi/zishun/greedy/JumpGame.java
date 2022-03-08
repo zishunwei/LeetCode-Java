@@ -11,6 +11,7 @@ package mobi.zishun.greedy;
 链接：https://leetcode-cn.com/problems/jump-game
  */
 public class JumpGame {
+    // 贪心
     public boolean canJump(int[] nums) {
         int n = nums.length;
         int maxJumpLength = 0;
