@@ -24,22 +24,22 @@ public class PopulatingNextRightPointers {
         if (root == null) {
             return null;
         }
-        Queue<Node> nodeList = new LinkedList<>();
-        nodeList.offer(root);
-        while (!nodeList.isEmpty()) {
-            int curLayerSize = nodeList.size();
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int curLayerSize = queue.size();
             for (int i = 0; i < curLayerSize; i++) {
-                Node cur = nodeList.poll();
+                Node cur = queue.poll();
                 if (cur.left != null) {
-                    nodeList.add(cur.left);
+                    queue.add(cur.left);
                 }
                 if (cur.right != null) {
-                    nodeList.add(cur.right);
+                    queue.add(cur.right);
                 }
                 if (i == curLayerSize - 1) {
                     cur.next = null;
                 } else {
-                    cur.next = nodeList.peek();
+                    cur.next = queue.peek();
                 }
             }
         }
