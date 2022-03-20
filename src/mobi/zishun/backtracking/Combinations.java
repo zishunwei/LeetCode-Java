@@ -33,7 +33,7 @@ public class Combinations {
     }
 
     private void dfs(int start, int n, int k) {
-        // 剪枝
+        // 剪枝, 如果start后的数字个数已经无法满足k个，则终止此次递归
         if (path.size() + (n - start + 1) < k) {
             return;
         }
