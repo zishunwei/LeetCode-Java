@@ -67,8 +67,9 @@ public class RemoveNthFromEnd {
         return preHead.next;
     }
 
-    // 方法三：双指针()
+    // 方法三：双指针
     public ListNode removeNthFromEndByTwoPointers(ListNode head, int n) {
+        // 哨兵节点解决head.length == n的情况
         ListNode preHead = new ListNode(-1, head);
         ListNode prev = preHead;
 
@@ -82,5 +83,26 @@ public class RemoveNthFromEnd {
         }
         prev.next = prev.next.next;
         return preHead.next;
+
+
+    }
+
+    // 双指针V2 - 无哨兵节点
+    public ListNode removeNthFromEndByTwoPointersV2(ListNode head, int n) {
+        ListNode fast = head;
+        ListNode slow = head;
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
+        }
+        // 如果fast已为空，说明是删除第一个节点，直接return
+        if (fast == null) {
+            return head.next;
+        }
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return head;
     }
 }
