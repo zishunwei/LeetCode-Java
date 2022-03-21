@@ -18,6 +18,35 @@ public class PermutationInString {
         if (m > n) {
             return false;
         }
+        // 存储字母的出现次数
+        int[] count1 = new int[26];
+        int[] count2 = new int[26];
+        // 初始化
+        for (int i = 0; i < m; i++) {
+            count1[s1.charAt(i) - 'a']++;
+            count2[s2.charAt(i) - 'a']++;
+        }
+        if (Arrays.equals(count1, count2)) {
+            return true;
+        }
+        // 窗口滑动
+        for (int i = m; i < n; i++) {
+            count2[s2.charAt(i) - 'a']++;
+            count2[s2.charAt(i - m) - 'a']--;
+            if (Arrays.equals(count1, count2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 初版
+    public boolean checkInclusionV2(String s1, String s2) {
+        int m = s1.length();
+        int n = s2.length();
+        if (m > n) {
+            return false;
+        }
         char[] chars1 = s1.toCharArray();
         char[] chars2 = s2.toCharArray();
         // 存储字母的出现次数
@@ -31,7 +60,7 @@ public class PermutationInString {
         }
         // 可以直接调用api对比两个初始数组，这里使用自己的比较（只比较s1有的字母，更高效）
 //        if (Arrays.equals(count1, count2)) {
-        if (isEqual(chars1, m, count1, count2)){
+        if (isEqual(chars1, m, count1, count2)) {
             return true;
         }
         // 窗口滑动
