@@ -1,6 +1,8 @@
 package mobi.zishun.backtracking;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /*
  * 733. 图像渲染
@@ -14,35 +16,62 @@ import java.util.Arrays;
  */
 public class FloodFill {
 
-    boolean[][] visited;
+    // BFS
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        int currColor = image[sr][sc];
+        if (currColor == newColor) {
+            return image;
+        }
+        int n = image.length;
+        int m = image[0].length;
+        int[] dx = {1, 0, 0, -1};
+        int[] dy = {0, 1, -1, 0};
+        Queue<int[]> queue = new LinkedList<int[]>();
+        queue.offer(new int[]{sr, sc});
+        image[sr][sc] = newColor;
+        while (!queue.isEmpty()) {
+            int[] cell = queue.poll();
+            int x = cell[0], y = cell[1];
+            for (int i = 0; i < 4; i++) {
+                int mx = x + dx[i], my = y + dy[i];
+                if (mx >= 0 && mx < n && my >= 0 && my < m && image[mx][my] == currColor) {
+                    queue.offer(new int[]{mx, my});
+                    image[mx][my] = newColor;
+                }
+            }
+        }
+        return image;
+    }
+
+    private boolean[][] visited;
 
     // 深度优先搜索（回溯思想）
-    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+    public int[][] floodFillV2(int[][] image, int sr, int sc, int newColor) {
         int originalColor = image[sr][sc];
         int length1 = image.length;
         int length2 = image[0].length;
         visited = new boolean[length1][length2];
-        floodFillBacktracking(image, sr, sc, newColor, originalColor, length1, length2);
+        dfs(image, sr, sc, newColor, originalColor, length1, length2);
         return image;
     }
 
-    public void floodFillBacktracking(int[][] image, int sr, int sc, int newColor, int originalColor, int length1, int length2) {
-        if (visited[sr][sc] ) {
+    public void dfs(int[][] image, int sr, int sc, int newColor, int originalColor, int length1, int length2) {
+        if (visited[sr][sc]) {
             return;
         }
         image[sr][sc] = newColor;
         visited[sr][sc] = true;
         if ((sr - 1) >= 0 && image[sr - 1][sc] == originalColor) {
-            floodFillBacktracking(image, sr - 1, sc, newColor, originalColor, length1, length2);
+            dfs(image, sr - 1, sc, newColor, originalColor, length1, length2);
         }
         if ((sr + 1) < length1 && image[sr + 1][sc] == originalColor) {
-            floodFillBacktracking(image, sr + 1, sc, newColor, originalColor, length1, length2);
+            dfs(image, sr + 1, sc, newColor, originalColor, length1, length2);
         }
         if ((sc - 1) >= 0 && image[sr][sc - 1] == originalColor) {
-            floodFillBacktracking(image, sr, sc - 1, newColor, originalColor, length1, length2);
+            dfs(image, sr, sc - 1, newColor, originalColor, length1, length2);
         }
         if ((sc + 1) < length2 && image[sr][sc + 1] == originalColor) {
-            floodFillBacktracking(image, sr, sc + 1, newColor, originalColor, length1, length2);
+            dfs(image, sr, sc + 1, newColor, originalColor, length1, length2);
         }
     }
 
