@@ -47,6 +47,7 @@ public class MaxAreaOfIsland {
         int n = grid[0].length;
         int[][] directions = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
         int maxArea = 0;
+        // 全部遍历塞入队列，在出队的时候再判断 + 沉海，避免重复计数岛屿
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 // 记录从当前节点开始bfs获得的岛屿面积
@@ -59,7 +60,7 @@ public class MaxAreaOfIsland {
                     if (curPos[0] < 0 || curPos[0] >= m || curPos[1] < 0 || curPos[1] >= n || grid[curPos[0]][curPos[1]] != 1) {
                         continue;
                     }
-                    // 当前计数+1，当前位置岛屿落海
+                    // 当前计数+1，当前位置岛屿沉海
                     curArea++;
                     grid[curPos[0]][curPos[1]] = 0;
                     // 往四个方向bfs遍历
