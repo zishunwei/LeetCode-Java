@@ -15,8 +15,10 @@ public class HammingWeight {
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
         int result = 0;
-        while (n != 0){
-            n = n & (n-1);
+        while (n != 0) {
+            // n = n & (n-1)
+            // 其运算结果恰为把 n 的二进制位中的最低位的 1 变为 0 之后的结果。
+            n = n & (n - 1);
             result++;
         }
         return result;
