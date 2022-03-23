@@ -2,6 +2,9 @@ package mobi.zishun.binarytree;
 
 import mobi.zishun.model.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /*
  * 617. 合并二叉树
 给你两棵二叉树： root1 和 root2 。
@@ -29,8 +32,37 @@ public class MergeBinaryTrees {
         return result;
     }
 
-    // dfs初版 - 把root2拼接赋值到root1 - 代码不简洁
+    // stack
     public TreeNode mergeTreesV2(TreeNode root1, TreeNode root2) {
+        if (root1 == null) {
+            return root2;
+        }
+        if (root2 == null) {
+            return root1;
+        }
+        Deque<TreeNode[]> stack = new ArrayDeque<>();
+        stack.addFirst(new TreeNode[]{root1, root2});
+        while (!stack.isEmpty()) {
+            TreeNode[] cur = stack.removeFirst();
+            TreeNode node1 = cur[0];
+            TreeNode node2 = cur[1];
+            node1.val += node2.val;
+            if (node1.left != null && node2.left != null) {
+                stack.addFirst(new TreeNode[]{node1.left, node2.left});
+            } else if (node2.left != null) {
+                node1.left = node2.left;
+            }
+            if (node1.right != null && node2.right != null) {
+                stack.addFirst(new TreeNode[]{node1.right, node2.right});
+            } else if (node2.right != null) {
+                node1.right = node2.right;
+            }
+        }
+        return root1;
+    }
+
+    // dfs初版 - 把root2拼接赋值到root1 - 代码不简洁
+    public TreeNode mergeTreesV3(TreeNode root1, TreeNode root2) {
         if (root1 == null) {
             return root2;
         }
