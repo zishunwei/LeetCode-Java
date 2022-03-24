@@ -8,6 +8,9 @@ import mobi.zishun.model.TreeNode;
 链接：https://leetcode-cn.com/problems/validate-binary-search-tree
  */
 public class IsValidBST {
+    // BST需保证右子树中所有值都大于根节点值（左子树同）
+    // 所以仅判断根节点的左右子树是否是BST是不足够的
+
     // 递归
     public boolean isValidBST(TreeNode root) {
         return isValidBSTRecursion(root, Long.MIN_VALUE, Long.MAX_VALUE);
