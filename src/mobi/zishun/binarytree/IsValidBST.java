@@ -36,7 +36,7 @@ public class IsValidBST {
         }
 
         // 访问左子树
-        if (!isValidBST(root.left)) {
+        if (!isValidBSTV2(root.left)) {
             return false;
         }
 
@@ -47,7 +47,7 @@ public class IsValidBST {
         preVal = root.val;
 
         // 访问右子树
-        if (!isValidBST(root.right)) {
+        if (!isValidBSTV2(root.right)) {
             return false;
         }
 
@@ -68,6 +68,7 @@ public class IsValidBST {
 
 
         IsValidBST method = new IsValidBST();
+        System.out.println(method.isValidBST(root));
         System.out.println(method.isValidBSTV2(root));
     }
 
