@@ -1,4 +1,4 @@
-package mobi.zishun.math;
+package mobi.zishun.sort;
 
 import java.util.Arrays;
 
