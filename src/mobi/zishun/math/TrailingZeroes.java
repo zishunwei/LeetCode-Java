@@ -1,16 +1,22 @@
-package mobi.zishun.recursion;
+package mobi.zishun.math;
 
 /*
 172. 阶乘后的零
 给定一个整数 n ，返回 n! 结果中尾随零的数量。
  */
 public class TrailingZeroes {
-    // 计算因子5：阶乘分解后有5的因数的尾数才会带0
+    // 计算因子5：阶乘分解后有5的因数的尾数才会带0 - O(n)
     public int trailingZeroes(int n) {
-        if (n<5){
+        if (n < 5) {
             return 0;
         }
         return n / 5 + trailingZeroes(n / 5);
+//        int ans = 0;
+//        while (n != 0) {
+//            n /= 5;
+//            ans += n;
+//        }
+//        return ans;
     }
 
     // 计算阶层，超出时间限制
