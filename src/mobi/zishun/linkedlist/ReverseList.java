@@ -30,11 +30,12 @@ public class ReverseList {
             return head;
         }
         // 假设head.next及之后部分已反转
-        ListNode last = reverseListByRecursion(head.next);
+        ListNode reversedNext = reverseListByRecursion(head.next);
+        // head == 1 -> 2 <- 3 <- 4 <- 5
         // 反转head与head.next节点
         head.next.next = head;
         head.next = null;
-        return last;
+        return reversedNext;
     }
 
     public static void main(String[] args){
