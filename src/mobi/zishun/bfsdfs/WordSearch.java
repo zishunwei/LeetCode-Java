@@ -36,6 +36,8 @@ public class WordSearch {
                     break loop;
                 }
                 if (board[i][j] == wordChars[0]) {
+                    // 同一个单元格内的字母不允许被重复使用
+                    // 每次开始搜索时重置一个记录路径的数组
                     boolean[][] visited = new boolean[m][n];
                     visited[i][j] = true;
                     dfs(board, m, n, i, j, wordChars, length, 0, visited);
