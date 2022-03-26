@@ -62,7 +62,7 @@ public class WordSearch {
                     !visited[newi][newj] && board[newi][newj] == wordChars[index + 1]) {
                 visited[newi][newj] = true;
                 dfs(board, m, n, newi, newj, wordChars, length, index + 1, visited);
-                visited[newi][newj] = false;
+                visited[newi][newj] = false; // 退回一步，vistied数组也需要重置
             }
         }
     }
