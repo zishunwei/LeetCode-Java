@@ -70,14 +70,17 @@ public class LongestContinuousSubarrayAbsoluteDiff {
         int right = 0;
         int ret = 0;
         while (right < n) {
+            // 添加元素时，与「队尾」元素相比较，比元素值小的值去掉，然后在「队尾」添加元素。「队首」可获取到最大值
             while (!queMax.isEmpty() && queMax.peekLast() < nums[right]) {
                 queMax.pollLast();
             }
+            queMax.offerLast(nums[right]);
+            // 添加元素时，与「队尾」元素相比较，比元素值大的值去掉，然后在「队尾」添加元素。「队首」可获取到最小值
             while (!queMin.isEmpty() && queMin.peekLast() > nums[right]) {
                 queMin.pollLast();
             }
-            queMax.offerLast(nums[right]);
             queMin.offerLast(nums[right]);
+            // 左边界收缩
             while (!queMax.isEmpty() && !queMin.isEmpty() && queMax.peekFirst() - queMin.peekFirst() > limit) {
                 if (nums[left] == queMin.peekFirst()) {
                     queMin.pollFirst();
@@ -87,6 +90,7 @@ public class LongestContinuousSubarrayAbsoluteDiff {
                 }
                 left++;
             }
+            // 输出结果
             ret = Math.max(ret, right - left + 1);
             right++;
         }
