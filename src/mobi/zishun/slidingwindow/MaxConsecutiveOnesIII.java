@@ -36,7 +36,7 @@ public class MaxConsecutiveOnesIII {
                 zeroCount++;
             }
             // zeroCount已大于k，循环移动left
-            // 从左去掉0
+            // 区间从左去掉0
             while (zeroCount > k) {
                 if (nums[left] == 0) {
                     zeroCount--;
