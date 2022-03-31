@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 /**
  * @Description:基于散列表的LRU算法
+ * 手动实现LinkedHashMap（双端链表+哈希表）
  */
 public class LRUBaseHashTable {
 
