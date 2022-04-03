@@ -5,18 +5,18 @@ import java.util.Arrays;
 public class QuickSort {
     public static void quickSort(int[] nums) {
         int n = nums.length;
-        quickSortRecursion(nums, 0, n - 1);
+        recursion(nums, 0, n - 1);
     }
 
-    private static void quickSortRecursion(int[] nums, int p, int r) {
+    private static void recursion(int[] nums, int p, int r) {
         if (p >= r) {
             return;
         }
         int q = partition(nums, p, r);
         // 注意！！是q-1不是q!
         // 第一次分区后-q即时中间的元素了
-        quickSortRecursion(nums, p, q - 1);
-        quickSortRecursion(nums, q + 1, r);
+        recursion(nums, p, q - 1);
+        recursion(nums, q + 1, r);
     }
 
     // 分区，选定q，原地移动nums中元素
