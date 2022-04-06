@@ -66,7 +66,6 @@ public class DecodeString {
                 for (int j = 0; j < num; j++) {
                     res.append(subRes);
                 }
-                num = 1;
                 i++;
             } else {
                 res.append(cur);
