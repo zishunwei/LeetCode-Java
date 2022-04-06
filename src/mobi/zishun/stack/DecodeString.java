@@ -1,4 +1,4 @@
-package mobi.zishun.string;
+package mobi.zishun.stack;
 
 /*
  * 394. 字符串解码
