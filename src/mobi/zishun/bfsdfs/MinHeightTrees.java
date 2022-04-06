@@ -1,4 +1,4 @@
-package mobi.zishun.graph;
+package mobi.zishun.bfsdfs;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
