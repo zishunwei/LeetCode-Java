@@ -1,4 +1,4 @@
-package mobi.zishun.bfsdfs;
+package mobi.zishun.trie;
 
 import java.util.LinkedList;
 import java.util.List;
