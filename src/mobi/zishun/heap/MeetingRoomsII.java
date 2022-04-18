@@ -1,4 +1,8 @@
-package mobi.zishun.array;
+package mobi.zishun.heap;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 /*
  * 253. 会议室 II
@@ -25,7 +29,23 @@ public class MeetingRoomsII {
     // 因此，每次我们想要检查是否有任何房间是空闲的，只需检查min堆的最顶层元素，因为这将是最早从当前占用的所有其他房间中释放出来的房间。
     // 如果我们从min heap堆顶部提取的房间不是空闲的，那么就没有其他房间是空闲的。因此，我们可以节省时间，只需分配一个新房间。
     public int minMeetingRooms(int[][] intervals) {
-        return 0;
+        // 按照 开始时间 对会议进行排序。
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        // 初始化一个新的 最小堆，将第一个会议的结束时间加入到堆中。我们只需要记录会议的结束时间，告诉我们什么时候房间会空。
+        PriorityQueue<Integer> endTimePQ = new PriorityQueue<>();
+        endTimePQ.offer(intervals[0][1]);
+        // 对每个会议，检查堆的最小元素（即堆顶部的房间）是否空闲。
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] >= endTimePQ.peek()) { // 房间空闲，后一个会议的开始时间晚于当前最早结束会议房间的时间
+                // 则从堆顶拿出该元素，将其改为我们处理的会议的结束时间，加回到堆中
+                endTimePQ.poll();
+                endTimePQ.offer(intervals[i][1]);
+            } else { // 房间不空闲
+                // 开新房间，并加入到堆中。
+                endTimePQ.offer(intervals[i][1]);
+            }
+        }
+        return endTimePQ.size();
     }
 
 }
