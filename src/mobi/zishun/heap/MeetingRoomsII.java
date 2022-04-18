@@ -36,7 +36,7 @@ public class MeetingRoomsII {
         endTimePQ.offer(intervals[0][1]);
         // 对每个会议，检查堆的最小元素（即堆顶部的房间）是否空闲。
         for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] >= endTimePQ.peek()) { // 房间空闲，后一个会议的开始时间晚于当前最早结束会议房间的时间
+            if (intervals[i][0] >= endTimePQ.element()) { // 房间空闲，后一个会议的开始时间晚于当前最早结束会议房间的时间
                 // 则从堆顶拿出该元素，将其改为我们处理的会议的结束时间，加回到堆中
                 endTimePQ.poll();
                 endTimePQ.offer(intervals[i][1]);
