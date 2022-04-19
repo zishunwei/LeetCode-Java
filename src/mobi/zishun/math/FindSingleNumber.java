@@ -13,7 +13,7 @@ import java.util.Set;
 输出: 1
 * https://leetcode-cn.com/problems/single-number/
  */
-public class SingleNumber {
+public class FindSingleNumber {
     // 位运算 - 不使用额外空间
     public int singleNumber(int[] nums) {
         // 异或运算符是用符号“^”表示的，其运算规律是：
