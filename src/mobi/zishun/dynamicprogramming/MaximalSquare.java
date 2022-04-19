@@ -25,6 +25,7 @@ public class MaximalSquare {
         int m = matrix.length;
         int n = matrix[0].length;
         // dp存的是边长（dp数是动态变化的，不是递增的）
+        // 用 dp(i, j)表示以 (i,j) 为 右下角 的正方形的最大边长
         int[][] dp = new int[m][n];
         // 存储最大边长（dp过程中取最大值，不能取dp[m-1][n-1]）
         int maxSide = 0;
