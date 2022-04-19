@@ -22,12 +22,34 @@ s 由小写英文字母组成
  */
 public class PalindromicSubstrings {
 
-    // 暴力法优化 - 中心拓展
+    // dp
     public int countSubstrings(String s) {
+        char[] chars = s.toCharArray();
+        int n = chars.length;
+        // 状态：dp[i][j] 表示字符串s在[i,j]区间的子串是否是一个回文串。
+        boolean[][] dp = new boolean[n][n];
+        int res = 0;
+        // 从小到大dp [i,j]区间, 保证后面dp中判断的中间子串是之前判断过的
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i <= j; i++) {
+                // 1.当前字符相等，2.两个字符中间没有间隔 or 中间字符串已被check为回文子串
+                if (chars[i] == chars[j] && (j - i < 2 || dp[i + 1][j - 1])) {
+                    res++;
+                    dp[i][j] = true; // 更新此子串的状态
+                }
+            }
+        }
+        return res;
+    }
+
+    // dp优化 - 中心拓展
+    public int countSubstringsV2(String s) {
         char[] chars = s.toCharArray();
         int n = chars.length;
         int res = n;
         for (int i = 0; i < 2 * n - 1; i++) {
+            // left和right指针和中心点的关系是？
+            // 首先是left，有一个很明显的2倍关系的存在，其次是right，可能和left指向同一个（偶数时），也可能往后移动一个（奇数）
             int left = i / 2;
             int right = i / 2 + i % 2;
             while (left >= 0 && right < n && chars[left] == chars[right]) {
@@ -41,7 +63,7 @@ public class PalindromicSubstrings {
 
 
     // 暴力法
-    public int countSubstringsV2(String s) {
+    public int countSubstringsV3(String s) {
         char[] chars = s.toCharArray();
         int n = chars.length;
         int res = n;
