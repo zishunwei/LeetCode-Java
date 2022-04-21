@@ -1,4 +1,4 @@
-package mobi.zishun.binarytree;
+package mobi.zishun.bst;
 
 import mobi.zishun.model.TreeNode;
 

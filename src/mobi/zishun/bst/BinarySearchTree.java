@@ -1,5 +1,6 @@
-package mobi.zishun.binarytree;
+package mobi.zishun.bst;
 
+import mobi.zishun.binarytree.TraversalByRecursion;
 import mobi.zishun.model.TreeNode;
 
 public class BinarySearchTree {
