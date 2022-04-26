@@ -12,6 +12,17 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/*
+ * 典型的BIO服务端:
+1. 一个主线程在某个port监听，等待客户端连接。
+2. 当接收到客户端发起的连接时，创建一个新的线程去处理客户端请求。
+3. 主线程重新回到port监听，等待下一个客户端连接。
+缺点:
+1. 每个新的客户端Socket都需要创建一个新的Thread处理，将会导致大量的线程处于休眠状态。
+2. 每个线程都有调用栈的内存分配，连接数非常多时，耗费较多内存。
+3. 连接数比较多时，创建大量线程，上下文切换所带来的开销较大。
+* https://blog.csdn.net/thinking_fioa/article/details/80398579
+ */
 public class BioSocketServer {
     public static void main(String[] args) throws IOException {
 //        startServerSingleClient(9716);
