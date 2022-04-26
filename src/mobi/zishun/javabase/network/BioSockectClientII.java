@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class BioSockectClientII {
     public static void main(String[] args) throws IOException {
-        startClient(9716);
+        startClient(9718);
     }
 
     public static void startClient(int port) throws IOException {

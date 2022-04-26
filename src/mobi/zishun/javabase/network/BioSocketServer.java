@@ -8,11 +8,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class BioSocketServer {
     public static void main(String[] args) throws IOException {
-        startServerSingleClient(9716);
-//        startServerClients(9717);
+//        startServerSingleClient(9716);
+//        startServerClients(9716);
+        startServerClientsByThreadPools(9718);
     }
 
     // 同步时服务端的示例代码
@@ -44,7 +48,8 @@ public class BioSocketServer {
         ServerSocket serverSocket = new ServerSocket(port);
         while (true) {
             Socket clientSocket = serverSocket.accept();
-            //当新的客户端到达时，开启新的线程去处理。然后主线程继续接受新的客户端
+            // 当新的客户端到达时，开启新的线程去处理。然后主线程继续接受新的客户端
+            // 这种情况，线程可以无限增加，最终导致OOM，可使用线程池控制线程数量（可同时连接的客户端数量）
             new Thread(new HandlerSocket(clientSocket)).start();
         }
     }
@@ -64,6 +69,30 @@ public class BioSocketServer {
             while ((msg = bufferedReader.readLine()) != null) {
                 System.out.println("收到客户端消息" + msg);
             }
+        }
+    }
+
+    public static void startServerClientsByThreadPools(int port) throws IOException {
+        // 创建Socket
+        ServerSocket serverSocket = new ServerSocket(port);
+        // 当新的客户端到达时，从线程池中拿到空闲的线程去处理。然后主线程继续接受新的客户端
+        // 这种情况，线程可以无限增加，最终导致OOM，可使用线程池控制线程数量（可同时连接的客户端数量）
+        HandlerSocketThreadPools pools = new HandlerSocketThreadPools(2, 3);
+        while (true) {
+            Socket clientSocket = serverSocket.accept();
+            pools.execute(new HandlerSocket(clientSocket));
+        }
+    }
+
+    public static class HandlerSocketThreadPools {
+        private final ThreadPoolExecutor threadPoolExecutor;
+
+        public HandlerSocketThreadPools(int maxSize, int size) {
+            threadPoolExecutor = new ThreadPoolExecutor(maxSize, maxSize, 120, TimeUnit.MICROSECONDS, new ArrayBlockingQueue<>(size));
+        }
+
+        public void execute(Runnable runnable) {
+            threadPoolExecutor.execute(runnable);
         }
     }
 }
