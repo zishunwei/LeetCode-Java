@@ -15,6 +15,7 @@ public class BioSocketServer {
         startServerClients(9717);
     }
 
+    // 同步时服务端的示例代码
     public static void startServerSingleClient(int port) throws IOException {
         // 创建Socket
         ServerSocket serverSocket = new ServerSocket(port);
@@ -31,6 +32,7 @@ public class BioSocketServer {
         }
     }
 
+    // 支持多客户端请求服务端代码
     public static void startServerClients(int port) throws IOException {
         // 创建Socket
         ServerSocket serverSocket = new ServerSocket(port);
@@ -52,7 +54,7 @@ public class BioSocketServer {
         public void run() {
             InputStream inputStream = socket.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String msg = null;
+            String msg;
             while ((msg = bufferedReader.readLine()) != null) {
                 System.out.println("收到客户端消息" + msg);
             }
