@@ -7,7 +7,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class BioSockectClient {
+public class BioSockectClientII {
     public static void main(String[] args) throws IOException {
         startClient(9717);
     }
