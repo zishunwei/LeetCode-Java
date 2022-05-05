@@ -1,5 +1,8 @@
 package mobi.zishun.math;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /*
  * 13. 罗马数字转整数
 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
@@ -18,45 +21,27 @@ M             1000
 * 链接：https://leetcode-cn.com/problems/roman-to-integer
  */
 public class RomanToInt {
-    static final int MASK1 = 1 << 7;
-    static final int MASK2 = (1 << 7) + (1 << 6);
+    Map<Character, Integer> symbolValues = new HashMap<Character, Integer>() {{
+        put('I', 1);
+        put('V', 5);
+        put('X', 10);
+        put('L', 50);
+        put('C', 100);
+        put('D', 500);
+        put('M', 1000);
+    }};
 
-    public boolean validUtf8(int[] data) {
-        int m = data.length;
-        int index = 0;
-        while (index < m) {
-            int num = data[index];
-            int n = getBytes(num);
-            if (n < 0 || index + n > m) {
-                return false;
+    public int romanToInt(String s) {
+        int ans = 0;
+        int n = s.length();
+        for (int i = 0; i < n; ++i) {
+            int value = symbolValues.get(s.charAt(i));
+            if (i < n - 1 && value < symbolValues.get(s.charAt(i + 1))) {
+                ans -= value;
+            } else {
+                ans += value;
             }
-            for (int i = 1; i < n; i++) {
-                if (!isValid(data[index + i])) {
-                    return false;
-                }
-            }
-            index += n;
         }
-        return true;
-    }
-
-    public int getBytes(int num) {
-        if ((num & MASK1) == 0) {
-            return 1;
-        }
-        int n = 0;
-        int mask = MASK1;
-        while ((num & mask) != 0) {
-            n++;
-            if (n > 4) {
-                return -1;
-            }
-            mask >>= 1;
-        }
-        return n >= 2 ? n : -1;
-    }
-
-    public boolean isValid(int num) {
-        return (num & MASK2) == MASK1;
+        return ans;
     }
 }
