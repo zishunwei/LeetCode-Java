@@ -19,6 +19,7 @@ public class MinimumAbsoluteDifferenceBST {
         return res;
     }
 
+    // 不能将变量作为入参来进行更改，直接作为全局变量
     int res = Integer.MAX_VALUE;
     int preVal = -1;
 
