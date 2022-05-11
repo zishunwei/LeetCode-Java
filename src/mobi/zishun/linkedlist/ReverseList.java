@@ -3,7 +3,8 @@ package mobi.zishun.linkedlist;
 import mobi.zishun.model.ListNode;
 
 /*
-反转链表
+ * 206. 反转链表
+ * https://leetcode.cn/problems/reverse-linked-list/
  */
 public class ReverseList {
     public ListNode reverseList(ListNode head) {
