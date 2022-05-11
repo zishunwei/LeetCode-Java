@@ -1,4 +1,4 @@
-package mobi.zishun.array;
+package mobi.zishun.matrix;
 
 import java.util.ArrayList;
 import java.util.Arrays;
