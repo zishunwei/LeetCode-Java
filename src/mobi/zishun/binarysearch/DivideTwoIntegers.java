@@ -62,11 +62,11 @@ public class DivideTwoIntegers {
     private long multiply(long x, long y) {
         long res = 0;
         while (y > 0) {
-            if ((y & 1) == 1) {
-                res += x;
+            if ((y & 1) == 1) { // y为奇数
+                res += x; // 叠加x到结果
             }
-            y >>= 1;
-            x += x;
+            y >>= 1; // y除以2，直到 y == 0
+            x += x; // x乘以2
         }
         return res;
     }
