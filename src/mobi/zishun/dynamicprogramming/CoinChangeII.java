@@ -35,7 +35,7 @@ public class CoinChangeII {
         dp[0] = 1;
         // 只考虑硬币组合，不考虑顺序（不同顺序都算一种） -> 外层循环遍历硬币
         for (int coin : coins) {
-            for (int i = coin; i <=  amount; i++) {
+            for (int i = coin; i <= amount; i++) {
                 dp[i] += dp[i - coin];
             }
         }
