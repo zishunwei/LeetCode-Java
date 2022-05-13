@@ -34,6 +34,7 @@ public class CombinationSumIV {
     public int combinationSum4(int[] nums, int target) {
         int[] dp = new int[target + 1];
         dp[0] = 1;
+        // 考虑组合顺序（不同顺序算多种） -> 内层循环遍历nums
         for (int i = 1; i <= target; i++) {
             for (int num : nums) {
                 if (i - num >= 0) {
