@@ -15,14 +15,14 @@ import java.util.List;
 删除 3 获得 3 个点数，接着要删除两个 2 和 4 。
 之后，再次删除 3 获得 3 个点数，再次删除 3 获得 3 个点数。
 总共获得 9 个点数。
-* 1 <= nums.length <= 2 * 104
+* 1 <= nums.length <= 2 * 10^4
 * 1 <= nums[i] <= 10^4
 链接：https://leetcode-cn.com/problems/delete-and-earn
  */
 public class DeleteAndEarn {
     // 计数 + 动态规划 - O(N+M)，其中 N 是数组nums的长度，M是nums中元素的最大值。
     public int deleteAndEarn(int[] nums) {
-        int n = nums.length;
+        // 找到nums中的最大值
         int max = 0;
         for (int num : nums) {
             if (num > max) {
@@ -36,11 +36,12 @@ public class DeleteAndEarn {
         }
         // 初始化
         int[] dp = new int[max + 1];
-        dp[0] = 0;
-        dp[1] = freq[1];
+        dp[0] = 0; // 选择0点计分为0分
+        dp[1] = freq[1]; // 选择1，得分为 1 * freq[1]
         // 动态规划
+        // 打家劫舍问题 - 只能隔一个选一个计分
         for (int i = 2; i <= max; i++) {
-            dp[i] = Math.max(dp[i - 1], freq[i] * i + dp[i - 2]);
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + i * freq[i]);
         }
         return dp[max];
     }
