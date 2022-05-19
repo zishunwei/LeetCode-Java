@@ -40,10 +40,14 @@ public class NthDigit {
         // digit 等于原始的 n 所属的数位；start 等于原始的 n 所属数位的数的起始点
         // indexCount 等于原始的 n 所属数位的索引总个数（不重要了，下面不用）
         // n 等于在当前数位里的第 n - 1 个索引（索引从 0 开始算起）
-        long num = start + (n - 1) / digit; // 算出原始的 n 到底对应那个数字
-        int remainder = (n - 1) % digit; // 余数就是原始的 n 是这个数字中的第几位
 
-        String numString = String.valueOf(num); // 将该数字转为 string 类型
-        return numString.charAt(remainder - 1) - '0';
+        // 算出原始的 n 到底对应那个数字
+        long num = start + (n - 1) / digit;
+        // 余数就是原始的 n 是这个数字中的第几位
+        int remainder = (n - 1) % digit;
+        // 将该数字转为 string 类型
+        String numString = String.valueOf(num);
+        // numString的第remainder位即为答案
+        return numString.charAt(remainder) - '0';
     }
 }
