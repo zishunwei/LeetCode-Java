@@ -24,8 +24,7 @@ public class SearchRotatedSortedArray {
     // 将数组一分为二，其中一定有一个是有序的，另一个可能是有序，也能是部分有序。
     // 此时有序部分用二分法查找。无序部分再一分为二，其中一个一定有序，另一个可能有序，可能无序。就这样循环.
     public int search(int[] nums, int target) {
-        int n = nums.length;
-        search(nums, target, 0, n - 1);
+        search(nums, target, 0, nums.length - 1);
         return res;
     }
 
@@ -41,7 +40,7 @@ public class SearchRotatedSortedArray {
         } else {
             search(nums, target, left, medium);
         }
-        if (medium < right){
+        if (medium < right) {
             if (nums[medium + 1] <= nums[right]) {
                 binarySearch(nums, target, medium + 1, right);
             } else {
