@@ -20,10 +20,39 @@ package mobi.zishun.binarysearch;
 链接：https://leetcode-cn.com/problems/search-in-rotated-sorted-array
  */
 public class SearchRotatedSortedArray {
-    // O(log(n))版本 - 递归版本
+    // O(log(n))版本 - 循环版本
     // 将数组一分为二，其中一定有一个是有序的，另一个可能是有序，也能是部分有序。
     // 此时有序部分用二分法查找。无序部分再一分为二，其中一个一定有序，另一个可能有序，可能无序。就这样循环.
     public int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = (right + left) >> 1;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            if (nums[left] <= nums[mid]) { //前半段有序
+                if (nums[left] <= target && target < nums[mid]) { //target在有序的前半段
+                    right = mid - 1;
+                } else { //target在无序的后半段
+                    left = mid + 1;
+                }
+            } else { //前半段无序，后半段有序
+                if (nums[mid] < target && target <= nums[right]) { //target在有序的后半段
+                    left = mid + 1;
+                } else { //target在无序的前半段
+                    right = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+
+
+    // O(log(n))版本 - 递归版本 - 代码复杂
+    // 将数组一分为二，其中一定有一个是有序的，另一个可能是有序，也能是部分有序。
+    // 此时有序部分用二分法查找。无序部分再一分为二，其中一个一定有序，另一个可能有序，可能无序。就这样循环.
+    public int searchV2(int[] nums, int target) {
         search(nums, target, 0, nums.length - 1);
         return res;
     }
@@ -63,42 +92,6 @@ public class SearchRotatedSortedArray {
             }
         }
     }
-
-    // O(log(n))版本 - 循环版本
-    public int searchV2(int[] nums, int target) {
-        int n = nums.length;
-        if (n == 0) {
-            return -1;
-        }
-        if (n == 1) {
-            return nums[0] == target ? 0 : -1;
-        }
-
-        int low = 0;
-        int high = n - 1;
-
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (nums[mid] == target) {
-                return mid;
-            }
-            if (nums[mid] >= nums[low]) {
-                if (target <= nums[mid] && target >= nums[low]) {
-                    high = mid;
-                } else {
-                    low = mid + 1;
-                }
-            } else {
-                if (target <= nums[high] && target >= nums[mid + 1]) {
-                    low = mid + 1;
-                } else {
-                    high = mid;
-                }
-            }
-        }
-        return -1;
-    }
-
 
     public static void main(String[] args) {
         SearchRotatedSortedArray m = new SearchRotatedSortedArray();
