@@ -1,8 +1,9 @@
-package mobi.zishun.divideconquer;
+package mobi.zishun.binarysearch;
 
 /*
  * 4. 寻找两个正序数组的中位数
-给定两个大小分别为 m 和 n 的正序（从小到大）数组nums1 和nums2。请你找出并返回这两个正序数组的 中位数 。
+给定两个大小分别为 m 和 n 的正序（从小到大）数组nums1 和nums2。
+* 请你找出并返回这两个正序数组的 中位数 。
 算法的时间复杂度应该为 O(log (m+n)) 。
 示例 1：
 输入：nums1 = [1,3], nums2 = [2]
@@ -11,12 +12,12 @@ package mobi.zishun.divideconquer;
 链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays
  */
 public class FindMedianSortedArrays {
-    // 二分查找
+    // 二分查找 - O(log(m+n))
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         return 0;
     }
 
-        //  合并数组 - O(m+n)
+    //  合并数组 - O(m+n)
     public double findMedianSortedArraysV2(int[] nums1, int[] nums2) {
         int n1 = nums1.length;
         int n2 = nums2.length;
