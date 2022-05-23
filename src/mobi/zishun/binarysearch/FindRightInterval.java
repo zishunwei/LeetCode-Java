@@ -57,6 +57,7 @@ public class FindRightInterval {
                     left = mid + 1;
                 }
             }
+            // 判断是否满足条件
             if (sorted[right][0] >= intervals[i][1]) {
                 res[i] = sorted[right][1];
             } else {
