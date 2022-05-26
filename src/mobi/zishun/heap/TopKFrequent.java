@@ -11,13 +11,7 @@ public class TopKFrequent {
     public int[] topKFrequent(int[] nums, int k) {
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         for (int num : nums) {
-            if (hashMap.containsKey(num)) {
-                int curTimes = hashMap.get(num);
-                curTimes++;
-                hashMap.put(num, curTimes);
-            } else {
-                hashMap.put(num, 1);
-            }
+            hashMap.put(num, hashMap.getOrDefault(num, 0) + 1 );
         }
 
         int[][] twoDimensionArr = new int[hashMap.size()][2];
