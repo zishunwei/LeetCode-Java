@@ -3,15 +3,45 @@ package mobi.zishun.heap;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /*
  * 347. 前 K 个高频元素
  */
 public class TopKFrequent {
+
     public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> freqs = new HashMap<>();
+        for (int num : nums) {
+            freqs.put(num, freqs.getOrDefault(num, 0) + 1);
+        }
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>(k, (a, b) -> a[1] - b[1]);
+        for (Map.Entry<Integer, Integer> freq : freqs.entrySet()) {
+            int curNum = freq.getKey();
+            int curFreq = freq.getValue();
+            if (pq.size() >= k){
+                if (curFreq > pq.peek()[1]){
+                    pq.poll();
+                    pq.offer(new int[]{curNum, curFreq});
+                }
+            } else {
+                pq.offer(new int[]{curNum, curFreq});
+            }
+        }
+
+        int[] res = new int[k];
+        int index = k -1;
+        while(!pq.isEmpty()){
+            res[--index] = pq.poll()[0];
+        }
+        return res;
+    }
+
+    public int[] topKFrequentV2(int[] nums, int k) {
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         for (int num : nums) {
-            hashMap.put(num, hashMap.getOrDefault(num, 0) + 1 );
+            hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
         }
 
         int[][] twoDimensionArr = new int[hashMap.size()][2];
