@@ -20,8 +20,8 @@ public class TopKFrequent {
         for (Map.Entry<Integer, Integer> freq : freqs.entrySet()) {
             int curNum = freq.getKey();
             int curFreq = freq.getValue();
-            if (pq.size() >= k){
-                if (curFreq > pq.peek()[1]){
+            if (pq.size() >= k) {
+                if (curFreq > pq.peek()[1]) {
                     pq.poll();
                     pq.offer(new int[]{curNum, curFreq});
                 }
@@ -31,8 +31,8 @@ public class TopKFrequent {
         }
 
         int[] res = new int[k];
-        int index = k -1;
-        while(!pq.isEmpty()){
+        int index = k;
+        while (!pq.isEmpty()) {
             res[--index] = pq.poll()[0];
         }
         return res;
