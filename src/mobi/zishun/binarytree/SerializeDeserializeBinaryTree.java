@@ -24,61 +24,15 @@ import java.util.Queue;
 * https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/
  */
 public class SerializeDeserializeBinaryTree {
-    private static final String NULL = "null";
+    private final String NULL = "null";
 
-    private static final String SEPARATOR = ",";
-
-    // DFS - 前序遍历
-    // Encodes a tree to a single string.
-    public String serialize(TreeNode root) {
-        if (root == null) {
-            return null;
-        }
-        StringBuilder result = new StringBuilder();
-        rserialize(root, result);
-        return result.toString();
-    }
-
-    private void rserialize(TreeNode root, StringBuilder result) {
-        if (root == null) {
-            result.append(NULL).append(SEPARATOR);
-            return;
-        }
-        result.append(root.val).append(SEPARATOR);
-        rserialize(root.left, result);
-        rserialize(root.right, result);
-    }
-
-    // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
-        if (data == null){
-            return null;
-        }
-        // 根据","把原先的序列分割开来得到先序遍历的元素列表，然后从左向右遍历这个序列：
-        String[] nodes = data.split(SEPARATOR);
-        Queue<String> nodeList = new LinkedList<>(Arrays.asList(nodes));
-        return rdeserialize(nodeList);
-    }
-
-    // 如果当前的元素为 None，则当前为空树
-    // 否则先解析这棵树的左子树，再解析它的右子树
-    private TreeNode rdeserialize(Queue<String> nodeList) {
-        String fisrtNode = nodeList.remove();
-        if (fisrtNode.equals(NULL)) {
-            return null;
-        }
-        TreeNode root = new TreeNode(Integer.parseInt(fisrtNode));
-        root.left = rdeserialize(nodeList);
-        root.right = rdeserialize(nodeList);
-        return root;
-    }
-
+    private final String SEPARATOR = ",";
 
     /*
      * BFS - 层序遍历版本
      */
     // Encodes a tree to a single string.
-    public static String serializeV2(TreeNode root) {
+    public String serialize(TreeNode root) {
         if (root == null) {
             return NULL;
         }
@@ -100,7 +54,7 @@ public class SerializeDeserializeBinaryTree {
     }
 
     // Decodes your encoded data to tree.
-    public static TreeNode deserializeV2(String data) {
+    public TreeNode deserialize(String data) {
         if (NULL.equals(data)) {
             return null;
         }
@@ -131,6 +85,50 @@ public class SerializeDeserializeBinaryTree {
         return root;
     }
 
+    // DFS - 前序遍历
+    // Encodes a tree to a single string.
+    public String serializeV2(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        rserializeV2(root, result);
+        return result.toString();
+    }
+
+    private void rserializeV2(TreeNode root, StringBuilder result) {
+        if (root == null) {
+            result.append(NULL).append(SEPARATOR);
+            return;
+        }
+        result.append(root.val).append(SEPARATOR);
+        rserializeV2(root.left, result);
+        rserializeV2(root.right, result);
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserializeV2(String data) {
+        if (data == null) {
+            return null;
+        }
+        // 根据","把原先的序列分割开来得到先序遍历的元素列表，然后从左向右遍历这个序列：
+        String[] nodes = data.split(SEPARATOR);
+        Queue<String> nodeList = new LinkedList<>(Arrays.asList(nodes));
+        return rdeserializeV2(nodeList);
+    }
+
+    // 如果当前的元素为 None，则当前为空树
+    // 否则先解析这棵树的左子树，再解析它的右子树
+    private TreeNode rdeserializeV2(Queue<String> nodeList) {
+        String fisrtNode = nodeList.remove();
+        if (fisrtNode.equals(NULL)) {
+            return null;
+        }
+        TreeNode root = new TreeNode(Integer.parseInt(fisrtNode));
+        root.left = rdeserializeV2(nodeList);
+        root.right = rdeserializeV2(nodeList);
+        return root;
+    }
 
     public static void main(String[] args) {
         SerializeDeserializeBinaryTree m = new SerializeDeserializeBinaryTree();
