@@ -34,39 +34,33 @@ public class AddTwoNumbersII {
             if (l1 != null) {
                 stack1.addFirst(l1.val);
                 l1 = l1.next;
-            } else {
-                stack1.addLast(0);
             }
             if (l2 != null) {
                 stack2.addFirst(l2.val);
                 l2 = l2.next;
-            } else {
-                stack2.addLast(0);
             }
         }
 
-        Deque<Integer> resStack = new LinkedList<>();
+        ListNode result = null;
         int flag = 0;
-        while (!stack1.isEmpty()) {
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
             int sum = 0;
-            sum += stack1.removeFirst();
-            sum += stack2.removeFirst();
+            sum += stack1.isEmpty() ? 0 : stack1.removeFirst();
+            sum += stack2.isEmpty() ? 0 : stack2.removeFirst();
             sum += flag;
-            resStack.addFirst(sum % 10);
+            // 将当前节点加到链表头部
+            ListNode cur = new ListNode(sum % 10);
+            cur.next = result;
+            result = cur;
             flag = sum / 10;
         }
 
-        ListNode preNode = new ListNode(-1);
-        ListNode prev = preNode;
-        if (flag == 1) {
-            prev.next = new ListNode(1);
-            prev = prev.next;
+        if (flag == 1) { // 在链表头部加一个 1 的节点
+            ListNode cur = new ListNode(1);
+            cur.next = result;
+            result = cur;
         }
-        while (!resStack.isEmpty()) {
-            prev.next = new ListNode(resStack.removeFirst());
-            prev = prev.next;
-        }
-        return preNode.next;
+        return result;
     }
 
     public static void main(String[] args) {
