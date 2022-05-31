@@ -42,10 +42,11 @@ public class StringCompression {
             char cur = chars[end];
             chars[result] = cur;
             result++;
+            // 找到下一个不和cur相同的值
             do {
                 end++;
             } while (end < n && chars[end] == cur);
-
+            // start - end中都是和cur相同的值
             int count = end - start;
             if (count != 1) {
                 String countStr = String.valueOf(count);
