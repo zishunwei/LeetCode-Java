@@ -34,6 +34,7 @@ chars[i] 可以是小写英文字母、大写英文字母、数字或符号
 public class StringCompression {
     public int compress(char[] chars) {
         int n = chars.length;
+        // result既是新数组的长度，也同时作为更新原数组的索引
         int result = 0;
         int start = 0;
         int end = 0;
