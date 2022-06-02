@@ -37,6 +37,7 @@ public class ValidTicTacToeState {
     public boolean validTicTacToe(String[] board) {
         int countX = 0;
         int countO = 0;
+        // 生成二维数组
         char[][] boardChars = new char[3][3];
         for (int i = 0; i < 3; i++) {
             String row = board[i];
@@ -91,9 +92,9 @@ public class ValidTicTacToeState {
         // 最终判断
         if (isXWin >= 1 && isOWin >= 1) { // X、O都赢了，不满足
             return false;
-        } else if (isXWin == 1 && countX - 1 != countO) { // X赢了，X的个数不是比O多1，不满足
+        } else if (isXWin >= 1 && countX - 1 != countO) { // X赢了，X的个数不是比O多1，不满足
             return false;
-        } else if (isOWin == 1 && countX != countO) { // O赢了，O的个数不和X一样，不满足
+        } else if (isOWin >= 1 && countX != countO) { // O赢了，O的个数不和X一样，不满足
             return false;
         }
 
